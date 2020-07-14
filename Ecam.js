@@ -1,10 +1,10 @@
 // Ecma
 
-//Json Infro from API
+//Json Info from API
 const JsonAp = [
     {
         Name: 'Gabriel',
-        Age: 27,
+        Birth: 1992,
         workplace: "Softtek",
         DevLan: ["Python", "Javascript", "C#"],
         source:"https://s2.eestatic.com/2019/05/17/social/La_Jungla_399220954_123067375_1024x576.jpg"
@@ -13,7 +13,7 @@ const JsonAp = [
      
     {
         Name: 'Karla',
-        Age: 30,
+        Birth: 1989,
         workplace: "Softtek",
         DevLan: ["Python", "Javascript", "C#", "Bootstrap"],
         source: "https://s2.eestatic.com/2019/05/17/social/La_Jungla_399220954_123067375_1024x576.jpg"
@@ -21,24 +21,44 @@ const JsonAp = [
     },
     {
         Name: 'Sergio',
-        Age: 33,
+        Birth: 1985,
         workplace: "Softtek",
         DevLan: ["Python", "Javascript", "C#", "Bootstrap", "Java"],
         source: "https://s2.eestatic.com/2019/05/17/social/La_Jungla_399220954_123067375_1024x576.jpg"
     }
 
 ]
-function FullInfo(worker) {
-    return `<div class="worker">
-        <img src="${worker.source}" style="width:15%;margin:2%"/>
-        <h2>Name:${worker.Name}<span> Age:${worker.Age}<span/><h2/>
-        <h3>
-    </div>`
-}
-let NewTable = document.getElementById("ListApp");
-let contador = document.getElementById("Count");
 
-    contador.innerHTML = `<h1>The total number of workers is ${JsonAp.length}</h1>
-    ${JsonAp.map(FullInfo).join(" ")}
-    <p class="footer">These ${JsonAp.length} where added recently</p>
-    `
+
+
+function age(Args) {
+    let Calculdate = new Date().getFullYear() - Args;
+    let consola;
+    Args >= 1 ? Calculdate = `${Calculdate} years ` : ` ${Calculdate} year`
+    return Calculdate;
+}
+function Devs(Langs) {
+    return `
+    <ul>
+        ${Langs.map(lan => `${lan}`).join('/')}
+    </ul>
+`
+}
+
+
+
+function FullInfo(worker) {
+     return `
+    <div class="flex-container">
+        <div>Name: ${worker.Name} </div>
+        <div>Devs:${worker.DevLan?Devs(worker.DevLan):''}</div>
+        <div>Workplace :${worker.workplace}</div>
+        <div>Age: ${age(worker.Birth)}</div>
+    </div>
+`
+
+
+}
+let BodyMn = document.getElementById("Count");
+BodyMn.innerHTML = `${JsonAp.map(FullInfo).join(" ")}`
+
