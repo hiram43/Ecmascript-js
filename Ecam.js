@@ -1,6 +1,6 @@
 // Ecma
 
-//Json Info from API
+//Json Info from API(Simulation)
 const JsonAp = [
     {
         Name: 'Gabriel',
@@ -40,7 +40,7 @@ function age(Args) {
 function Devs(Langs) {
     return `
     <ul>
-        ${Langs.map(lan => `${lan}`).join('/')}
+        ${Langs.map(lan => `<li>${lan}</li>`).join("")} 
     </ul>
 `
 }
@@ -50,10 +50,12 @@ function Devs(Langs) {
 function FullInfo(worker) {
      return `
     <div class="flex-container">
-        <div>Name: ${worker.Name} </div>
-        <div>Devs:${worker.DevLan?Devs(worker.DevLan):''}</div>
-        <div>Workplace :${worker.workplace}</div>
-        <div>Age: ${age(worker.Birth)}</div>
+        <div><strong>Name: </strong> ${worker.Name} </div>
+        <div><strong>Devs:</strong>${worker.DevLan?Devs(worker.DevLan):''}</div>
+        <div><strong>Workplace :</strong>${worker.workplace}</div>
+        <div><strong>Age:</strong> ${age(worker.Birth)}</div>
+        <img class="img"/ src="${worker.source}">
+
     </div>
 `
 
